@@ -1,4 +1,6 @@
-import './components/greeting-form';
+import './components/app';
+
+import './components/greeting-form/style.scss';
 
 
 (() => {
