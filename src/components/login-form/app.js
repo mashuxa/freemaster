@@ -1,5 +1,6 @@
 import React from 'react';
 
+
 export class LoginForm extends React.Component {
   render() {
     return (
@@ -8,6 +9,7 @@ export class LoginForm extends React.Component {
         <input type="text" className="login-form__input"/>
         <label className="login-form__label">Password</label>
         <input type="password" className="login-form__input"/>
+        <button className="login-form__btn" type="submit">Log In</button>
       </form>
     );
   }

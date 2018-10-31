@@ -1,0 +1,79 @@
+@import "theme";
+
+@mixin center($position) {
+  position: absolute;
+
+  @if $position == 'vertical' {
+    top: 50%;
+    transform: translateY(-50%);
+  } @else if $position == 'horizontal' {
+    left: 50%;
+    transform: translate(-50%);
+  } @else if $position == 'both' {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+}
+
+@mixin font(
+  $fontFamily: sans-serif,
+  $size: 15px,
+  $color: $color-dark,
+  $weight: 500,
+  $line-height: 1.2
+) {
+  font-family: $fontFamily;
+  font-size: $size;
+  color: $color;
+  font-weight: $weight;
+  line-height: $line-height;
+}
+
+@mixin header(
+  $padding: 10px,
+  $backgroundColor: $color-light
+) {
+  @include font;
+}
+
+@mixin block(
+  $padding: 10px,
+  $backgroundColor: $color-light
+) {
+  @include font;
+
+  display: block;
+}
+
+@mixin clearfix() {
+  &:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+}
+
+
+
+@mixin label($width: 100%) {
+  text-transform: uppercase;
+  padding: 5px 0;
+  display: block;
+  width: $width;
+}
+
+@mixin input($width: 100%) {
+  box-sizing: border-box;
+  display: block;
+  padding: 5px;
+  width: $width;
+}
+
+@mixin btn {
+  @include font;
+  margin: 10px auto;
+  padding: 5px 15px;
+  display: block;
+
+}

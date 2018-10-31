@@ -4,16 +4,16 @@ import {LoginForm} from '../login-form/app';
 
 // this.props.name
 class GreetingForm extends React.Component {
-  constructor(props){
+  constructor(props) {
     super(props);
     this.state = {
-      selectedFormType: 'registration'
+      selectedFormType: 'login',
     };
+    this.switchFormType = this.switchFormType.bind(this);
   }
 
-  setFormType(selectedFormType){
-    // this.setState({selectedFormType});
-    // change
+  switchFormType(e) {
+    this.setState({selectedFormType: e.target.id});
   }
 
   render() {
@@ -25,12 +25,14 @@ class GreetingForm extends React.Component {
         <h1 className="greeting-form__header">
           Choose!
         </h1>
-        <div className="greeting-form__tabs-wrapper">
-          <input type="radio" name={'greeting-form__tabs'} className="greeting-form__tab greeting-form__tab--login"
-                 defaultChecked/>
-          <input type="radio" name={'greeting-form__tabs'}
-                 className="greeting-form__tab greeting-form__tab--registration"/>
-        </div>
+        <form className="greeting-form__tabs-wrapper" onChange={this.switchFormType}>
+          <input id="login" type="radio" name={'greetingFormTabs'}
+                 className="greeting-form__tab greeting-form__tab--login"
+                 defaultChecked={this.state.selectedFormType === 'login'}/>
+          <input id="registration" type="radio" name={'greetingFormTabs'}
+                 className="greeting-form__tab greeting-form__tab--registration"
+                 defaultChecked={this.state.selectedFormType === 'registration'}/>
+        </form>
         {currentForm}
       </div>
     );
