@@ -17,7 +17,7 @@ export class RegisterForm extends React.Component {
         <input type="password" className="register-form__input"/>
         <label className="register-form__label">Repeat password</label>
         <input type="password" className="register-form__input"/>
-        <button className="register-form__btn" type="submit">Redister</button>
+        <button className="register-form__btn" type="submit">Register</button>
       </form>
     );
   }

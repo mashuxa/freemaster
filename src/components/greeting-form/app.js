@@ -13,7 +13,7 @@ class GreetingForm extends React.Component {
   }
 
   switchFormType(e) {
-    this.setState({selectedFormType: e.target.id});
+    this.setState({selectedFormType: e.target.dataset.id});
   }
 
   render() {
@@ -26,10 +26,10 @@ class GreetingForm extends React.Component {
           Choose!
         </h1>
         <form className="greeting-form__tabs-wrapper" onChange={this.switchFormType}>
-          <input id="login" type="radio" name={'greetingFormTabs'}
+          <input id="login" data-id="login" type="radio" name={'greetingFormTabs'}
                  className="greeting-form__tab greeting-form__tab--login"
                  defaultChecked={this.state.selectedFormType === 'login'}/>
-          <input id="registration" type="radio" name={'greetingFormTabs'}
+          <input id="registration" data-id="registration" type="radio" name={'greetingFormTabs'}
                  className="greeting-form__tab greeting-form__tab--registration"
                  defaultChecked={this.state.selectedFormType === 'registration'}/>
         </form>

@@ -12,7 +12,12 @@
 
   &__user-type-wrapper {
     display: flex;
-    padding: 20px;
+    width: 40%;
+    margin: 20px auto 10px;
+    border-radius: 15px;
+    overflow: hidden;
+    background-color: $color-secondary;
+    border: 1px solid $color-secondary;
   }
 
   &__user-type {
@@ -23,15 +28,14 @@
     -webkit-appearance: none;
     -moz-appearance: none;
     color: $color-light;
-    background-color: $color-neutral;
-    padding: 10px;
+    padding: 5px;
     text-align: center;
     text-transform: uppercase;
     cursor: pointer;
     transition-duration: 0.3s;
 
     &:checked {
-      background-color: $color-secondary;
+      background-color: $color-success;
     }
 
     &--client {
