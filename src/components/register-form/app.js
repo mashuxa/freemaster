@@ -11,6 +11,7 @@ export class RegisterForm extends React.Component {
           <input type="radio" className="register-form__user-type register-form__user-type--master"
                  name="registerFormUserType"/>
         </div>
+        <div className="register-form__hint">You will have capability to switch application mode in settings.</div>
         <label className="register-form__label">Login or Email</label>
         <input type="text" className="register-form__input"/>
         <label className="register-form__label">Password</label>

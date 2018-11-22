@@ -9,7 +9,6 @@ class GreetingForm extends React.Component {
     this.state = {
       selectedFormType: 'login',
     };
-    this.switchFormType = this.switchFormType.bind(this);
   }
 
   switchFormType(e) {
@@ -25,7 +24,7 @@ class GreetingForm extends React.Component {
         <h1 className="greeting-form__header">
           Choose!
         </h1>
-        <form className="greeting-form__tabs-wrapper" onChange={this.switchFormType}>
+        <form className="greeting-form__tabs-wrapper" onChange={this.switchFormType.bind(this)}>
           <input id="login" data-id="login" type="radio" name={'greetingFormTabs'}
                  className="greeting-form__tab greeting-form__tab--login"
                  defaultChecked={this.state.selectedFormType === 'login'}/>

@@ -13,7 +13,7 @@
   &__user-type-wrapper {
     display: flex;
     width: 40%;
-    margin: 20px auto 10px;
+    margin: 10px auto 0;
     border-radius: 15px;
     overflow: hidden;
     background-color: $color-secondary;
@@ -47,11 +47,20 @@
       &:before {
         content: 'Master';
       }
-
     }
   }
 
   &__btn {
     @include btn;
+  }
+
+  &__hint {
+    padding: 10px 5px;
+    text-transform: uppercase;
+    font-weight: 500;
+    font-size: 0.6em;
+    font-family: sans-serif;
+    text-align: center;
+    color: $color-success;
   }
 }
