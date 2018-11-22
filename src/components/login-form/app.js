@@ -1,5 +1,6 @@
 import React from 'react';
 
+
 export class LoginForm extends React.Component {
   constructor(props) {
     super(props);
@@ -8,25 +9,21 @@ export class LoginForm extends React.Component {
     };
   }
 
-  cleanFormStyle(form) {
-    form.classList.remove('login-form--success');
-    form.classList.remove('login-form--wrong');
-    this.setState({isFilledForm: true});
-  }
-
-  cleanInputStyle(input) {
-    input.classList.remove('login-form__input--success');
-    input.classList.remove('login-form__input--wrong');
+  // checkInput(input) {
+  //
+  // }
+  componentDidMount(prevProps, prevState, prevContext) {
+    console.log(this.form);
   }
 
   checkForm(e) {
     e.preventDefault();
-    const form = e.target;
-    const inputs = Array.from(form.getElementsByClassName('login-form__input'));
-    this.cleanFormStyle(form);
+    const inputs = Array.from(this.form.getElementsByTagName('input'));
+    this.setState({isFilledForm: null});
 
     inputs.forEach((input) => {
-      this.cleanInputStyle(input);
+      input.classList.remove('login-form__input--success');
+      input.classList.remove('login-form__input--wrong');
       let pattern;
       switch (input.dataset.inputType) {
         case 'login':
@@ -36,11 +33,10 @@ export class LoginForm extends React.Component {
           pattern = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,12}$/;
           break;
         default:
-          console.log('default');
+          console.warn('Pattern undefined');
       }
-      const inputValue = input.value;
 
-      if (inputValue.search(pattern) === -1) {
+      if (input.value.trim().search(pattern) === -1) {
         input.classList.add('login-form__input--wrong');
         this.setState({isFilledForm: false});
       } else {
@@ -51,9 +47,7 @@ export class LoginForm extends React.Component {
 
   render() {
     let currentFormClass;
-    console.log(this.state.isFilledForm);
-    console.log(this.state.isFilledForm);
-    if (this.state.isFilledForm === null ) {
+    if (this.state.isFilledForm === null) {
       currentFormClass = 'login-form';
     } else if (this.state.isFilledForm) {
       currentFormClass = 'login-form login-form--success';
@@ -61,10 +55,14 @@ export class LoginForm extends React.Component {
       currentFormClass = 'login-form login-form--wrong';
     }
 
+
+
     return (
-      <form className={currentFormClass} onSubmit={this.checkForm.bind(this)}>
+      <form className={currentFormClass}
+            ref={(node) => {this.form = node;}}
+            onSubmit={this.checkForm.bind(this)}>
         <label className="login-form__label">Login or Email</label>
-        <input type="email" className="login-form__input" data-input-type="login" autoComplete="on" formNoValidate />
+        <input type="email" className="login-form__input" data-input-type="login" autoComplete="on" formNoValidate/>
         <label className="login-form__label">Password</label>
         <input type="password" className="login-form__input" data-input-type="password" autoComplete="on"/>
         <button className="login-form__btn" type="submit">Log In</button>
