@@ -8,26 +8,36 @@ export class LoginForm extends React.Component {
     this.state = {
       isFilledForm: null,
     };
+
     this.checkInput.bind(this);
     this.checkForm.bind(this);
   }
 
-  checkInput(input) {
-    return input.value.trim().search(getInputPattern(input.dataset.inputType)) !== -1;
+
+
+  componentDidMount(prevProps, prevState, prevContext) {
+    // console.log(this.form);
   }
 
-  checkForm() {
-    const inputs = Array.from(this.form.getElementsByTagName('input'));
-    return inputs.map((input) => {
-      return this.checkInput(input);
+  checkInput(input) {
+    input.className = 'login-form__input';
+    if (input.value.trim().search(getInputPattern(input.dataset.inputType)) === -1) {
+      input.classList.add('login-form__input--wrong');
+      return false;
+    } else {
+      input.classList.add('login-form__input--success');
+      return true;
+    }
+  }
+
+  checkForm(form, isAddInputStyle) {
+    const inputs = Array.from(form.getElementsByTagName('input'));
+    let isFilledForm = inputs.map((input) => {
+      return this.checkInput(input, isAddInputStyle);
     }).reduce((prevVal, nextVal) => {
       return prevVal && nextVal;
     });
-  }
-
-  addInputStyle(input, isFilledInput) {
-    input.className = 'login-form__input';
-    input.classList.add(isFilledInput ? 'login-form__input--success' : 'login-form__input--wrong');
+    this.setState({isFilledForm: isFilledForm});
   }
 
   clearFormState() {
@@ -49,19 +59,18 @@ export class LoginForm extends React.Component {
         this.form = node;
       }} onSubmit={(e) => {
         e.preventDefault();
-        this.setState({isFilledForm: this.checkForm()});
+        this.checkForm(e.target);
       }} onChange={(e) => {
-        if(this.checkInput(e.target)){
-          this.addInputStyle(e.target, true);
-        }
-        if (this.checkForm()) {
-          this.setState({isFilledForm: true});
-        }
-      }} noValidate>
+        e.preventDefault();
+        this.checkInput(e.target);
+
+      }} onFocus={
+        this.clearFormState.bind(this)
+      }>
         <label className="login-form__label">Login or Email</label>
-        <input className="login-form__input" type="email" data-input-type="login" onFocus={this.clearFormState.bind(this)} autoComplete="on"/>
+        <input className="login-form__input" type="email" data-input-type="login" autoComplete="on" formNoValidate/>
         <label className="login-form__label">Password</label>
-        <input className="login-form__input" type="password" data-input-type="password" onFocus={this.clearFormState.bind(this)} autoComplete="on"/>
+        <input className="login-form__input" type="password" data-input-type="password" autoComplete="on"/>
         <button className="login-form__btn" type="submit">Log In</button>
       </form>
     );
