@@ -51,17 +51,14 @@ export class LoginForm extends React.Component {
         e.preventDefault();
         this.setState({isFilledForm: this.checkForm()});
       }} onChange={(e) => {
-        if(this.checkInput(e.target)){
-          this.addInputStyle(e.target, true);
-        }
-        if (this.checkForm()) {
-          this.setState({isFilledForm: true});
-        }
+        this.addInputStyle(e.target, this.checkInput(e.target));
       }} noValidate>
         <label className="login-form__label">Login or Email</label>
-        <input className="login-form__input" type="email" data-input-type="login" onFocus={this.clearFormState.bind(this)} autoComplete="on"/>
+        <input className="login-form__input" type="email" data-input-type="login"
+               onFocus={this.clearFormState.bind(this)} autoComplete="on"/>
         <label className="login-form__label">Password</label>
-        <input className="login-form__input" type="password" data-input-type="password" onFocus={this.clearFormState.bind(this)} autoComplete="on"/>
+        <input className="login-form__input" type="password" data-input-type="password"
+               onFocus={this.clearFormState.bind(this)} autoComplete="on"/>
         <button className="login-form__btn" type="submit">Log In</button>
       </form>
     );

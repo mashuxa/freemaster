@@ -1,8 +1,8 @@
 import React from 'react';
-import {RegisterForm} from '../register-form/app';
-import {LoginForm} from '../login-form/app';
+import {RegisterForm} from '../trash/register-form/app';
+import {Form} from '../form/app';
 
-// this.props.name
+
 class GreetingForm extends React.Component {
   constructor(props) {
     super(props);
@@ -17,7 +17,7 @@ class GreetingForm extends React.Component {
 
   render() {
     const {selectedFormType} = this.state;
-    let currentForm = selectedFormType === 'login' ? <LoginForm/> : <RegisterForm/>;
+    let currentForm = selectedFormType === 'login' ? <Form/> : <RegisterForm/>;
 
     return (
       <div className="greeting-form">

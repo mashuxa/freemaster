@@ -1,4 +1,4 @@
-@import '../common/mixins';
+@import '../../common/mixins';
 //appearance: none;
 .register-form {
   &__label {
@@ -12,7 +12,7 @@
 
   &__user-type-wrapper {
     display: flex;
-    width: 40%;
+    width: 50%;
     margin: 10px auto 0;
     border-radius: 15px;
     overflow: hidden;
